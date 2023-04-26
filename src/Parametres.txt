@@ -1,0 +1,44 @@
+[version 1.1]
+
+Températures
+	Voir le fichier Temperatures-Montreal.npy (format numpy)
+
+Isolation du bâtiment
+    Après un quart d'heure, la nouvelle température T+ safisfait
+
+    (T+ - T) = - (1-eta) * (T - Text)
+
+    où Text est la température extérieure, et le coefficient eta
+    (qui dépend de l'isolation) = 0.99
+
+Coefficient de performance de la pompe à chaleur (sans unités)
+(en fonction de la température extérieure Text en °C)
+	Fonctionnement normal (=chauffer) :
+		COP(Text) = 3 + 10 * abs(tanh(Text/100)) * tanh(Text/100)
+	Fonctionnement revese (=refroidir) :
+		COP constant (indépendant de Text) = 3.2
+
+
+Puissance maximale de la pompe à chaleur : 1 kW
+
+Capacité calorifique du bâtiment
+	Pour chauffer/refroidir de 0.4 °C l'entièreté du bâtiment 
+	il faut transférer une quantité d'énergie/chaleur de 1 kWh
+	(le bâtiment contient 360 m^3 <- ce paramètre n'est plus utilisé)
+
+Coût de l'éléctricité 
+	Heures creuses (22h à 7h du matin) : 0,18 $/kWh
+	Heures pleines (7h du matin à 22h) : 0,26 $/kWh
+
+Intervalle des températures admissibles
+	Tmin = 19 °C
+	Tmax = 21 °C
+Température initiale de la pièce = valeur centrale de cet intervalle
+Température finale de la pièce = même valeur (tâche 1) ou libre (tâche 2)
+
+Coefficients de pénalité pour le calcul de l'inconfort (sans unités)
+	Par degré °C au dessous de Tmin et par quart d'heure = 3
+  	Par degré °C au dessus de Tmax et par quart d'heure  = 1
+
+Semaine de référence (présentée à gauche dans les résultats)
+	Début à l'indice 13050 (mi-mai)
